@@ -1,4 +1,5 @@
 from . import _version
+from ._mapping import DISPLAY_PSYCHOPY, REWARD_MAP
 from .psychopy_render import get_psychopy_info
 from .tasks import get_configs, get_env
 from .utils import run_single_episode
@@ -18,6 +19,8 @@ __all__ = [
     "run_single_episode",
     "ENVIRONMENTS",
     "get_psychopy_info",
+    "REWARD_MAP",
+    "DISPLAY_PSYCHOPY",
 ]
 
 __version__ = _version.get_versions()["version"]
