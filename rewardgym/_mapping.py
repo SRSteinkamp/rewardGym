@@ -21,4 +21,4 @@ DISPLAY_PSYCHOPY.update(discover_classes(psychopy_display))
 DISPLAY_PSYCHOPY.update(discover_classes(advanced_display))
 
 
-REWARD_MAP = discover_classes(reward_classes)
+REWARD_CLASSES = discover_classes(reward_classes)
