@@ -1,0 +1,4 @@
+[submodule "rewardgym/tasks/template"]
+	path = rewardgym/tasks/template
+	url = https://github.com/rewardMap/template.git
+    branch = main
