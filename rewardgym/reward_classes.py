@@ -5,6 +5,11 @@ import numpy as np
 from .utils import check_seed
 
 
+class SharedStatus:
+    def __init__(self, p, max_val=1):
+        self.p = p
+
+
 class BaseReward:
     def __init__(self, reward, p=1, seed=1234):
         if not isinstance(reward, (list, tuple, np.ndarray)):
