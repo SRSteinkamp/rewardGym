@@ -26,7 +26,6 @@ class PsychopyEnv(BaseEnv):
         name: str = None,
         n_actions=None,
         reduced_actions=None,
-        step_reward: bool = False,
     ):
         """
         Environment to render tasks to the screen using pygame.
@@ -60,7 +59,6 @@ class PsychopyEnv(BaseEnv):
             name,
             n_actions,
             reduced_actions=reduced_actions,
-            step_reward=step_reward,
         )
 
         self.is_setup = False

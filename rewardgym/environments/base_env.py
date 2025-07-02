@@ -31,6 +31,7 @@ class BaseEnv(Env):
         name: str = None,
         n_actions: int = None,
         reduced_actions: int = None,
+        step_reward: bool = False,
     ):
         """
         The core environment used for modeling and in part for displays.
@@ -189,7 +190,7 @@ class BaseEnv(Env):
         return observation, info
 
     def step(
-        self, action: int = None, step_reward: bool = False
+        self, action: int = None
     ) -> Tuple[Union[int, np.array], int, bool, bool, dict]:
         """
         Stepping through the graph - acquire a new observation in the graph.
@@ -198,10 +199,6 @@ class BaseEnv(Env):
         ----------
         action : int, optional
             the action made by an agent, by default None
-        step_reward : bool, optional
-            Only necessary, if rewards are episode sensitive, if True calls
-            all reward objects, not only the selected one (while ignoring their output),
-            by default False
 
         Returns
         -------
@@ -243,7 +240,7 @@ class BaseEnv(Env):
             else:
                 self.reward = self.reward_locations[self.agent_location]()
             # Stepping rewards, e.g. if the whole environment changes (as in two-step task)
-            if step_reward:
+            if self.step_reward:
                 for rw in self.reward_locations.keys():
                     if self.agent_location != rw:
                         self.reward_locations[rw]()

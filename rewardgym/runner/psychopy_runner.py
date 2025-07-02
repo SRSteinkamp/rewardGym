@@ -133,9 +133,7 @@ def pspy_run_task(
                 win=win,
             )
 
-            next_obs, reward, terminated, truncated, info = env.step(
-                env.action, step_reward=env.name in ["two-step"]
-            )
+            next_obs, reward, terminated, truncated, info = env.step(env.action)
             actions.append(env.previous_action)
             logger.current_location = env.agent_location
 

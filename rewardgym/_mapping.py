@@ -1,7 +1,8 @@
 import inspect
 
 from . import reward_classes
-from .psychopy_render import advanced_display, psychopy_display
+
+# from .psychopy_render import advanced_display, psychopy_display
 
 
 def discover_classes(submodule):
@@ -17,8 +18,8 @@ def discover_classes(submodule):
 
 DISPLAY_PSYCHOPY = {}
 
-DISPLAY_PSYCHOPY.update(discover_classes(psychopy_display))
-DISPLAY_PSYCHOPY.update(discover_classes(advanced_display))
+# DISPLAY_PSYCHOPY.update(discover_classes(psychopy_display))
+# DISPLAY_PSYCHOPY.update(discover_classes(advanced_display))
 
 
 REWARD_CLASSES = discover_classes(reward_classes)

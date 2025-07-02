@@ -1,6 +1,6 @@
 import inspect
 import warnings
-from typing import Any, Callable, Dict, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, Union
 
 import yaml
 
@@ -11,8 +11,7 @@ def load_yaml(yaml_path: Union[str]) -> Dict[str, Any]:
     return raw
 
 
-def load_environment_graph(filepath):
-    raw_data = load_yaml(yaml_path=filepath)
+def load_environment_graph(raw_data: Dict):
     environment_graph = {}
 
     for state_str, value in raw_data.items():
@@ -44,7 +43,7 @@ def instantiate_from_config(
     config: Any,
     class_map: Dict[str, Callable],
     inject_keys: Optional[Dict[str, Any]] = None,
-    class_keys: Optional[list[str]] = None,
+    class_keys: Optional[List[str]] = None,
 ) -> Any:
     inject_keys = inject_keys or {}
     class_keys = class_keys or ["class", "type"]
@@ -97,11 +96,18 @@ def instantiate_from_config(
         return config
 
 
-def load_objects_from_yaml(
+def load_task_from_yaml(
     yaml_path: Union[str],
     class_map: Dict[str, Callable],
     inject_keys: Optional[Dict[str, Any]] = None,
-    class_keys: Optional[list[str]] = None,
+    class_keys: Optional[List[str]] = None,
 ) -> Any:
     raw = load_yaml(yaml_path=yaml_path)
-    return instantiate_from_config(raw, class_map, inject_keys, class_keys)
+
+    graph = load_environment_graph(raw["graph"])
+    rewards = instantiate_from_config(
+        raw["rewards"], class_map, inject_keys, class_keys
+    )
+    meta = raw["meta"]
+
+    return meta, graph, rewards
