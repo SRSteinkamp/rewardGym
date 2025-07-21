@@ -93,6 +93,7 @@ class BaseEnv(Env):
         assert render_mode is None or render_mode in self.metadata["render_modes"]
 
         self.render_mode = render_mode
+        self.step_reward = step_reward
         self.window = None
         self.clock = None
         self.reward = None
